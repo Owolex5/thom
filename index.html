@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thomas Liam McCarthy | Lobbyist and Security Analyst</title>
+<meta name="description" content="Thomas Liam McCarthy is a lobbyist and security analyst from Galway, Ireland.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS (dark first, same look as the template; light mode redefines them) ============ */
+:root {
+  --bg: #000;
+  --surface: #0d0d0d;
+  --surface-2: #171717;
+  --text: #f5f5f5;
+  --soft: #d0d0d0;
+  --muted: #9a9a9a;
+  --border: #242424;
+  --border-2: #333;
+  --hover-border: #777;
+  --inv: #f5f5f5;          /* inverse button / active chip */
+  --on-inv: #000;
+  --btn-grey: #3a3a3a;
+  --btn-grey-h: #4a4a4a;
+  --btn-grey-b: #555;
+  --btn-grey-fg: #fff;
+  --ghost: rgba(255,255,255,.03);
+  --ghost-h: rgba(255,255,255,.08);
+  --pill-bg: rgba(12,12,12,.85);
+  --pill-open: rgba(10,10,10,.97);
+  --field-bg: #000;
+  --placeholder: #666;
+  --num-bg: #e4e4e4;
+  --num-fg: #111;
+  --ok: #9be7b5;
+  --err: #ff8a8a;
+  --logo-a: #6a6a6a;
+  --logo-b: #2a2a2a;
+  --thumb-a: #2b2b2b;
+  --thumb-b: #111;
+  --sil: #2a2a2a;
+  --radius: 14px;
+  --radius-sm: 9px;
+  --font: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --nav-h: 76px;
+  --photo-filter: none; /* photos show in full colour. For black and white use: grayscale(1) contrast(1.05) */
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f4f4f4; --surface: #ffffff; --surface-2: #ececec; --text: #0b0b0b; --soft: #333; --muted: #666;
+    --border: #dedede; --border-2: #cbcbcb; --hover-border: #888;
+    --inv: #0b0b0b; --on-inv: #fff;
+    --btn-grey: #1c1c1c; --btn-grey-h: #333; --btn-grey-b: #1c1c1c; --btn-grey-fg: #fff;
+    --ghost: rgba(0,0,0,.03); --ghost-h: rgba(0,0,0,.07);
+    --pill-bg: rgba(255,255,255,.85); --pill-open: rgba(255,255,255,.98);
+    --field-bg: #fff; --placeholder: #999; --num-bg: #111; --num-fg: #fff;
+    --ok: #1b7a3d; --err: #c0392b; --logo-a: #555; --logo-b: #111;
+    --thumb-a: #e4e4e4; --thumb-b: #cfcfcf; --sil: #d6d6d6;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f4f4f4; --surface: #ffffff; --surface-2: #ececec; --text: #0b0b0b; --soft: #333; --muted: #666;
+  --border: #dedede; --border-2: #cbcbcb; --hover-border: #888;
+  --inv: #0b0b0b; --on-inv: #fff;
+  --btn-grey: #1c1c1c; --btn-grey-h: #333; --btn-grey-b: #1c1c1c; --btn-grey-fg: #fff;
+  --ghost: rgba(0,0,0,.03); --ghost-h: rgba(0,0,0,.07);
+  --pill-bg: rgba(255,255,255,.85); --pill-open: rgba(255,255,255,.98);
+  --field-bg: #fff; --placeholder: #999; --num-bg: #111; --num-fg: #fff;
+  --ok: #1b7a3d; --err: #c0392b; --logo-a: #555; --logo-b: #111;
+  --thumb-a: #e4e4e4; --thumb-b: #cfcfcf; --sil: #d6d6d6;
+  color-scheme: light;
+}
+
+/* ============ BASE ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; background: var(--bg); }
+body {
+  font-family: var(--font); background: var(--bg); color: var(--text);
+  line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+ul, ol { list-style: none; }
+h1, h2, h3 { line-height: 1.2; font-weight: 600; }
+:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 6px; }
+
+.container { width: min(1120px, 100%); margin-inline: auto; }
+.section { padding: clamp(56px, 8vw, 96px) 0 0; }
+.head { text-align: center; margin-bottom: 36px; }
+.head h2 { font-size: clamp(1.7rem, 3.4vw, 2.2rem); }
+.head p { margin-top: 8px; font-size: .78rem; font-weight: 600; }
+
+/* ============ BUTTONS ============ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 20px; border-radius: 8px; font-size: .8rem; font-weight: 500;
+  border: 1px solid transparent; transition: transform .2s, background .2s, border-color .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-grey { background: var(--btn-grey); border-color: var(--btn-grey-b); color: var(--btn-grey-fg); }
+.btn-grey:hover { background: var(--btn-grey-h); }
+.btn-outline { border-color: var(--border-2); background: var(--ghost); color: var(--text); }
+.btn-outline:hover { border-color: var(--hover-border); background: var(--ghost-h); }
+.btn-light { background: var(--inv); color: var(--on-inv); }
+.btn-sm { padding: 8px 16px; font-size: .75rem; }
+.btn-full { width: 100%; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 90;
+  height: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: max(clamp(16px, 5vw, 64px), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(16px, 5vw, 64px), env(safe-area-inset-right, 0px));
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  background: linear-gradient(var(--bg) 40%, transparent);
+}
+.logo {
+  width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 30% 30%, var(--logo-a), var(--logo-b)); border: 1px solid var(--border-2);
+  font-weight: 600; font-size: .85rem; justify-self: start; color: #fff;
+}
+.pill {
+  display: flex; align-items: center; gap: 2px; padding: 6px 8px;
+  border: 1px solid var(--border-2); border-radius: 14px; background: var(--pill-bg);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.pill a { position: relative; padding: 7px 14px; font-size: .72rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+.pill a:hover, .pill a.active { color: var(--text); }
+.pill a.active::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px; background: var(--text); border-radius: 2px; }
+.nav-right { justify-self: end; display: flex; align-items: center; gap: 10px; }
+.icon-btn { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border-2); display: grid; place-items: center; background: var(--ghost); transition: border-color .2s; }
+.icon-btn:hover { border-color: var(--hover-border); }
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn .sun { display: none; }
+:root[data-theme="light"] .icon-btn .sun { display: block; }
+:root[data-theme="light"] .icon-btn .moon { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .icon-btn .sun { display: block; }
+  :root:not([data-theme="dark"]) .icon-btn .moon { display: none; }
+}
+.menu-btn { display: none; flex-direction: column; gap: 5px; }
+.menu-btn span { width: 16px; height: 2px; background: var(--text); border-radius: 2px; transition: transform .25s; }
+.menu-btn[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+/* ============ PHOTOS (3 slots: hero, about, banner) ============ */
+.ph { position: relative; overflow: hidden; background: var(--surface-2); border: 1px solid var(--border); border-radius: 20px; }
+.ph .sil { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--sil); }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: var(--photo-filter); }
+.ph img.missing { display: none; }
+
+/* ============ HERO ============ */
+.hero {
+  min-height: 100svh; padding-top: calc(var(--nav-h) + 30px); padding-bottom: 40px;
+  display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 30px;
+}
+.hero-copy { min-width: 0; }
+.hello { font-size: .85rem; font-weight: 500; margin-bottom: 10px; }
+.hero h1 { font-size: clamp(2rem, 4.6vw, 3rem); font-weight: 600; line-height: 1.15; margin-bottom: 18px; }
+.lead { font-size: .85rem; color: var(--soft); max-width: 46ch; margin-bottom: 22px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.socials { display: flex; gap: 12px; }
+.socials a { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 10px; transition: background .2s, transform .2s; }
+.socials a:hover { background: var(--surface-2); transform: translateY(-2px); }
+.hero-photo { justify-self: end; width: min(420px, 100%); aspect-ratio: 4 / 5; }
+
+/* ============ CARDS ============ */
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px 20px; display: flex; flex-direction: column; gap: 12px;
+  transition: transform .3s, border-color .3s;
+}
+.card:hover { transform: translateY(-5px); border-color: var(--border-2); }
+.card h3 { font-size: 1.02rem; font-weight: 500; }
+.card p { font-size: .75rem; color: var(--soft); }
+.chips { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+.chips span { font-size: .7rem; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); }
+.tags2 { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags2 span { font-size: .68rem; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--border-2); color: var(--soft); }
+
+/* ============ ABOUT ============ */
+.about-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 56px); align-items: center; margin-bottom: 40px; }
+.about-photo { aspect-ratio: 4 / 5; width: 100%; }
+.about-text { font-size: .85rem; color: var(--soft); }
+.about-text p + p { margin-top: 14px; }
+.sub-title { text-align: center; font-size: 1rem; font-weight: 500; margin-bottom: 16px; }
+.step {
+  display: flex; align-items: center; gap: 14px; padding: 16px 18px;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius);
+  font-size: .8rem; transition: border-color .3s, transform .3s;
+}
+.step:hover { border-color: var(--hover-border); transform: translateY(-3px); }
+.num { width: 28px; height: 28px; border-radius: 7px; background: var(--num-bg); color: var(--num-fg); display: grid; place-items: center; font-size: .68rem; font-weight: 600; flex: none; }
+.stats { display: flex; justify-content: center; gap: clamp(28px, 6vw, 64px); margin: 34px 0 30px; text-align: center; flex-wrap: wrap; }
+.stats strong { display: block; font-size: 1.7rem; font-weight: 600; line-height: 1.2; }
+.stats span { font-size: .7rem; color: var(--soft); }
+.edu { display: flex; align-items: center; gap: 14px; width: fit-content; max-width: 100%; margin: 0 auto; padding: 16px 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.edu-icon { width: 42px; height: 42px; flex: none; display: grid; place-items: center; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--border); }
+.edu strong { display: block; font-size: .85rem; font-weight: 500; line-height: 1.35; }
+.edu small { display: block; font-size: .7rem; color: var(--muted); }
+
+/* ============ FOCUS CARDS (filterable) ============ */
+.filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 28px; }
+.chip { padding: 7px 16px; border-radius: 999px; border: 1px solid var(--border-2); font-size: .72rem; color: var(--muted); transition: all .2s; }
+.chip:hover { color: var(--text); border-color: var(--hover-border); }
+.chip.active { background: var(--inv); color: var(--on-inv); border-color: var(--inv); }
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.project {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column; transition: transform .3s, border-color .3s;
+}
+.project:hover { transform: translateY(-5px); border-color: var(--hover-border); }
+.project.hide { display: none; }
+.thumb { height: 190px; display: grid; place-items: center; position: relative; overflow: hidden; background: radial-gradient(circle at 50% 30%, var(--thumb-a), var(--thumb-b)); color: var(--soft); }
+.thumb svg { width: 84px; height: 84px; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .5s; }
+.project:hover .thumb svg { transform: scale(1.08); }
+.p-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tags span { font-size: .64rem; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--border-2); color: var(--soft); }
+.p-body h3 { font-size: 1.02rem; font-weight: 500; }
+.p-body p { font-size: .75rem; color: var(--soft); }
+.metrics { display: flex; gap: 22px; font-size: .68rem; color: var(--muted); }
+.metrics b { display: block; font-size: 1rem; font-weight: 600; color: var(--text); }
+.link { margin-top: auto; padding-top: 6px; font-size: .78rem; font-weight: 500; display: inline-flex; gap: 6px; align-self: flex-start; }
+.link span { transition: transform .2s; }
+.link:hover span { transform: translateX(4px); }
+
+/* ============ BANNER (photo 3) ============ */
+.banner { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: stretch; width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; }
+.banner-copy { padding: clamp(24px, 5vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: 18px; min-width: 0; }
+.banner-copy h2 { font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.25; }
+.banner-copy p { font-size: .85rem; color: var(--soft); max-width: 46ch; }
+.banner-copy cite { font-size: .72rem; font-weight: 500; font-style: normal; color: var(--muted); }
+.banner-copy .btn { align-self: flex-start; }
+.banner-photo { border: 0; border-radius: 0; min-height: 320px; height: 100%; }
+
+/* ============ CONTACT ============ */
+.contact-wrap {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 56px); align-items: start;
+  padding: clamp(22px, 4vw, 40px); border: 1px solid var(--border); border-radius: 20px; background: var(--surface);
+}
+.contact-copy p { font-size: .85rem; color: var(--soft); margin-bottom: 22px; }
+.contact-links { display: flex; flex-direction: column; gap: 10px; font-size: .85rem; }
+.contact-links a { border-bottom: 1px solid var(--border-2); padding-bottom: 2px; transition: border-color .2s; overflow-wrap: anywhere; }
+.contact-links a:hover { border-color: var(--text); }
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: .72rem; font-weight: 500; margin-bottom: 6px; }
+.field input, .field textarea {
+  width: 100%; padding: 12px 14px; font: inherit; font-size: .8rem; color: var(--text);
+  background: var(--field-bg); border: 1px solid var(--border-2); border-radius: var(--radius-sm); resize: vertical;
+  transition: border-color .2s;
+}
+.field input::placeholder, .field textarea::placeholder { color: var(--placeholder); }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--text); }
+.field.invalid input, .field.invalid textarea { border-color: var(--err); }
+.err { display: none; color: var(--err); font-size: .68rem; margin-top: 4px; }
+.field.invalid .err { display: block; }
+.form-status { margin-top: 10px; font-size: .75rem; color: var(--ok); min-height: 1.2em; text-align: center; }
+.form-status.bad { color: var(--err); }
+
+/* ============ MODAL ============ */
+.case { border: 0; padding: 0; margin: auto; width: min(760px, calc(100% - 24px)); max-height: calc(100svh - 24px); border-radius: 24px; background: var(--surface); color: var(--text); box-shadow: 0 30px 60px -20px rgba(0,0,0,.8); overflow: hidden; }
+.case::backdrop { background: rgba(0, 0, 0, .6); backdrop-filter: blur(4px); }
+.case[open] { animation: pop .3s cubic-bezier(.2, .7, .2, 1); }
+@keyframes pop { from { opacity: 0; transform: translateY(20px) scale(.97); } }
+.case-inner { max-height: calc(100svh - 24px); overflow-y: auto; position: relative; }
+.case-close { position: absolute; top: 14px; right: 14px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--border); color: var(--text); transition: transform .2s; }
+.case-close:hover { transform: rotate(90deg); }
+.case-thumb { height: 200px; position: relative; overflow: hidden; }
+.case-thumb .thumb { width: 100%; height: 100%; }
+.case-body { padding: clamp(22px, 4vw, 40px); display: flex; flex-direction: column; gap: 14px; }
+.case-body h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+.case-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: .8rem; color: var(--muted); }
+.case-meta b { color: var(--text); font-weight: 600; }
+.case-sec h3 { font-size: 1rem; margin: 8px 0 4px; }
+.case-sec p { color: var(--soft); font-size: .88rem; }
+.case-metrics { padding: 16px 0 4px; border-top: 1px solid var(--border); }
+.case-body .btn { align-self: flex-start; }
+html.no-scroll { overflow: hidden; }
+
+/* ============ FOOTER ============ */
+.footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 56px 0 36px; color: var(--muted); font-size: .72rem; }
+.footer a:hover { color: var(--text); }
+
+/* ============ REVEAL (content is visible at rest; this only nudges it up) ============ */
+.reveal { transform: translateY(20px); transition: transform .7s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0s); }
+.reveal.in { transform: none; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1000px) {
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 820px) {
+  .nav { grid-template-columns: auto 1fr; }
+  .menu-btn { display: flex; }
+  .pill {
+    position: fixed; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) - 6px);
+    left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px));
+    flex-direction: column; align-items: stretch; gap: 0; padding: 8px; border-radius: 16px; background: var(--pill-open);
+    transform: translateY(-14px); opacity: 0; pointer-events: none; transition: transform .3s, opacity .3s;
+  }
+  .pill.open { transform: none; opacity: 1; pointer-events: auto; }
+  .pill a { padding: 13px 14px; font-size: .85rem; border-radius: 10px; }
+  .pill a.active { background: var(--surface-2); }
+  .pill a.active::after { display: none; }
+  .hero { grid-template-columns: minmax(0, 1fr); min-height: auto; padding-top: calc(var(--nav-h) + 24px); }
+  .hero-photo { order: -1; justify-self: center; width: min(300px, 78%); }
+  .grid-3 { grid-template-columns: minmax(0, 1fr); }
+  .contact-wrap { grid-template-columns: minmax(0, 1fr); }
+  .about-grid { grid-template-columns: minmax(0, 1fr); }
+  .about-photo { max-width: 360px; margin-inline: auto; }
+}
+@media (max-width: 600px) {
+  .grid-4, .projects { grid-template-columns: minmax(0, 1fr); }
+  .hero-actions .btn { flex: 1; }
+  .stats { gap: 22px; }
+  .edu { width: 100%; }
+  .banner { grid-template-columns: minmax(0, 1fr); }
+  .banner-photo { min-height: 0; aspect-ratio: 4 / 3; height: auto; }
+  .nav-right .btn { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal { transform: none; }
+}
+</style>
+</head>
+<body>
+
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#home" class="logo" aria-label="Thomas Liam McCarthy, home">TM</a>
+
+    <nav class="pill" id="pill" aria-label="Primary">
+      <a href="#home" class="active">Home</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#about">About</a>
+      <a href="#focus">Focus</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="#contact" class="btn btn-outline btn-sm">Let's Talk</a>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch between light and dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pill">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="home">
+      <div class="hero-copy">
+        <p class="hello reveal">I am Thomas Liam McCarthy</p>
+        <h1 class="reveal">Lobbyist<br>&amp; Security Analyst</h1>
+        <p class="lead reveal">
+          I lobby for policies and votes that protect my government's interests overseas, and I analyse the
+          threats and targets that could put my country at risk.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="#contact" class="btn btn-grey">Get in Touch</a>
+          <a href="#focus" class="btn btn-outline">View Focus Areas</a>
+        </div>
+        <div class="socials reveal">
+          <!-- Replace # with the real LinkedIn address -->
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zM9.5 9.75h3.8v1.54h.05c.53-1 1.82-2.05 3.75-2.05 4 0 4.75 2.63 4.75 6.05V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58V21h-4V9.75z"/></svg>
+          </a>
+          <a href="#contact" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- PHOTO 1: save your hero picture next to this file as  thero.png  (or change the name below) -->
+      <div class="ph hero-photo reveal">
+        <svg class="sil" viewBox="0 0 400 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="200" cy="190" r="78"/><path d="M40 500c0-110 70-185 160-185s160 75 160 185z"/></svg>
+        <img src="thero.png" alt="Thomas Liam McCarthy" width="800" height="1000">
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="section container" id="expertise">
+      <header class="head reveal">
+        <h2>Expertise</h2>
+        <p>Influence abroad, protection at home</p>
+      </header>
+
+      <div class="grid-4">
+        <article class="card reveal">
+          <h3>Policy Advocacy</h3>
+          <p>Making the case for policies and votes that support my government's interests overseas.</p>
+          <div class="chips"><span>Legislation &amp; votes</span><span>Policy positions</span></div>
+        </article>
+        <article class="card reveal">
+          <h3>Bilateral Relations</h3>
+          <p>Keeping the relationship between both countries strong through steady, trusted contact.</p>
+          <div class="chips"><span>Government engagement</span><span>Long-term partnership</span></div>
+        </article>
+        <article class="card reveal">
+          <h3>Threat Analysis</h3>
+          <p>Assessing possible threats and targets against my government, from foreign and domestic sources.</p>
+          <div class="chips"><span>Risk assessment</span><span>Early warning</span></div>
+        </article>
+        <article class="card reveal">
+          <h3>Counter-Terrorism</h3>
+          <p>Protecting the country from acts of terrorism by studying high value targets and people of interest.</p>
+          <div class="chips"><span>High value targets</span><span>People of interest</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section container" id="about">
+      <header class="head reveal">
+        <h2>About Me</h2>
+      </header>
+
+      <div class="about-grid">
+        <!-- PHOTO 2: tabout.png -->
+        <div class="ph about-photo reveal">
+          <svg class="sil" viewBox="0 0 400 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="200" cy="190" r="78"/><path d="M40 500c0-110 70-185 160-185s160 75 160 185z"/></svg>
+          <img src="tabout.png" alt="Thomas Liam McCarthy at work" width="800" height="1000">
+        </div>
+        <div class="about-text reveal">
+          <p>
+            I'm Thomas Liam McCarthy, a lobbyist and security analyst from Galway, Ireland. My work has two
+            sides that depend on each other: persuading decision makers to support policies that help my
+            government overseas, and understanding who might want to harm the country.
+          </p>
+          <p>
+            On the lobbying side, I push for policies and votes that influence my government's interests abroad
+            and keep the relationship between both countries healthy. On the security side, I analyse possible
+            threats and targets, and I look closely at high value targets and people of interest who may be
+            connected to an act of terrorism, foreign or domestic.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="sub-title reveal">My Approach</h3>
+      <div class="grid-3">
+        <div class="step reveal"><span class="num">01</span>Understand the threat and the interest</div>
+        <div class="step reveal"><span class="num">02</span>Assess and brief decision makers</div>
+        <div class="step reveal"><span class="num">03</span>Advocate and protect</div>
+      </div>
+
+      <ul class="stats reveal">
+        <li><strong id="ageStat" data-count="61">61</strong><span>Years old</span></li>
+        <li><strong data-count="2">2</strong><span>Disciplines</span></li>
+        <li><strong data-count="2">2</strong><span>Fronts: foreign &amp; domestic</span></li>
+      </ul>
+
+      <div class="edu reveal">
+        <span class="edu-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        </span>
+        <div>
+          <small>Origin</small>
+          <strong>Galway, Ireland</strong>
+          <small>Born 9 September 1965</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOCUS (filterable cards + detail modal) -->
+    <section class="section container" id="focus">
+      <header class="head reveal">
+        <h2>Focus Areas</h2>
+        <p>What I lobby for and what I watch for</p>
+      </header>
+
+      <div class="filters reveal" role="group" aria-label="Filter focus areas">
+        <button class="chip active" type="button" data-filter="all">All</button>
+        <button class="chip" type="button" data-filter="lobby">Lobbying</button>
+        <button class="chip" type="button" data-filter="security">Security</button>
+      </div>
+
+      <div class="projects">
+        <article class="project reveal" data-cat="lobby">
+        <div class="thumb">
+    <img src="vote.jfif" alt="Thumbnail">
+</div>    <div class="p-body">
+            <div class="tags"><span>Lobbying</span><span>Policy</span></div>
+            <h3>Policies and votes</h3>
+            <p>Pressing for policies and votes that influence my government's interests overseas.</p>
+            <ul class="metrics"><li><b>Policy</b> &amp; votes</li><li><b>Overseas</b> interests</li></ul>
+            <button type="button" class="link" data-case="policy">Read more <span>→</span></button>
+          </div>
+        </article>
+
+        <article class="project reveal" data-cat="lobby">
+<div class="thumb">
+    <img src="bil.jfif" alt="Thumbnail">
+</div>  <div class="p-body">
+            <div class="tags"><span>Lobbying</span><span>Diplomacy</span></div>
+            <h3>Bilateral relationship</h3>
+            <p>Maintaining a good relationship between both countries over the long term.</p>
+            <ul class="metrics"><li><b>Two</b> countries</li><li><b>Long-term</b> trust</li></ul>
+            <button type="button" class="link" data-case="bilateral">Read more <span>→</span></button>
+          </div>
+        </article>
+
+        <article class="project reveal" data-cat="lobby">
+          <div class="thumb">
+    <img src="over.png" alt="Thumbnail">
+</div>   <div class="p-body">
+            <div class="tags"><span>Lobbying</span><span>Monitoring</span></div>
+            <h3>Overseas interests</h3>
+            <p>Following the proposals and decisions abroad that could affect my government.</p>
+            <ul class="metrics"><li><b>Global</b> view</li><li><b>Early</b> notice</li></ul>
+            <button type="button" class="link" data-case="overseas">Read more <span>→</span></button>
+          </div>
+        </article>
+
+        <article class="project reveal" data-cat="security">
+<div class="thumb">
+    <img src="risk ass.jfif" alt="Thumbnail">
+</div>
+          <div class="p-body">
+            <div class="tags"><span>Security</span><span>Analysis</span></div>
+            <h3>Threat assessment</h3>
+            <p>Analysing possible threats to my government, from foreign and domestic sources.</p>
+            <ul class="metrics"><li><b>Foreign</b> &amp; domestic</li><li><b>Risk</b> based</li></ul>
+            <button type="button" class="link" data-case="threat">Read more <span>→</span></button>
+          </div>
+        </article>
+
+        <article class="project reveal" data-cat="security">
+        <div class="thumb">
+    <img src="high.png" alt="Thumbnail">
+</div>  <div class="p-body">
+            <div class="tags"><span>Security</span><span>Protection</span></div>
+            <h3>High value targets</h3>
+            <p>Identifying the places, assets and people that a terrorist act could be aimed at.</p>
+            <ul class="metrics"><li><b>Targets</b> identified</li><li><b>Exposure</b> reduced</li></ul>
+            <button type="button" class="link" data-case="targets">Read more <span>→</span></button>
+          </div>
+        </article>
+
+        <article class="project reveal" data-cat="security">
+<div class="thumb">
+    <img src="white h.jpg" alt="Thumbnail">
+</div>  <div class="p-body">
+            <div class="tags"><span>Security</span><span>Counter-terrorism</span></div>
+            <h3>People of interest</h3>
+            <p>Studying individuals who may be linked to an act of terrorism.</p>
+            <ul class="metrics"><li><b>Evidence</b> led</li><li><b>Preventive</b> aim</li></ul>
+            <button type="button" class="link" data-case="people">Read more <span>→</span></button>
+          </div>
+        </article>
+      </div>
+    </section>
+    <style>
+      .projects .thumb {
+    height: 240px; /* Increase or decrease as needed */
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+}
+
+.projects .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+    display: block;
+}
+    </style>
+
+    <!-- BANNER (PHOTO 3: tbanner.png, wide) -->
+    <section class="section container" aria-label="Statement">
+      <div class="banner reveal">
+        <div class="banner-copy">
+          <h2>Strong partnerships are built on trust. Safe countries are built on early warning.</h2>
+          <p>I work on both: building the relationships that keep two governments close, and watching for the threats that could put a country at risk.</p>
+          <cite>Thomas Liam McCarthy</cite>
+          <a href="#contact" class="btn btn-grey">Get in Touch</a>
+        </div>
+        <div class="ph banner-photo">
+          <svg class="sil" viewBox="0 0 400 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="200" cy="190" r="78"/><path d="M40 500c0-110 70-185 160-185s160 75 160 185z"/></svg>
+          <img src="tbanner.png" alt="Thomas Liam McCarthy" width="1000" height="800">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section container" id="contact">
+      <header class="head reveal">
+        <h2>Let's Talk</h2>
+        <p>Policy, partnership or security. Start a conversation.</p>
+      </header>
+
+      <div class="contact-wrap reveal">
+        <div class="contact-copy">
+          <p>Tell me a little about what you need and I'll get back to you.</p>
+          <ul class="contact-links">
+            <!-- Replace both addresses below with the real email (also change EMAIL in the script) -->
+            <li><a href="mailto:your-email@example.com" id="emailLink">thomas@avgsolutions.com</a></li>
+            <li><a href="#">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <form class="form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="enter your email address" autocomplete="email" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="How can I help?" required></textarea>
+            <small class="err"></small>
+          </div>
+          <button type="submit" class="btn btn-light btn-full">Send message</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p>© <span id="year"></span> Thomas Liam McCarthy. All rights reserved.</p>
+    <a href="#home">Back to top ↑</a>
+  </footer>
+
+  <!-- DETAIL MODAL -->
+  <dialog class="case" id="caseModal" aria-labelledby="caseTitle">
+    <div class="case-inner">
+      <button class="case-close" id="caseClose" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="case-thumb" id="caseThumb"></div>
+      <div class="case-body">
+        <div class="tags" id="caseTags"></div>
+        <h2 id="caseTitle"></h2>
+        <ul class="case-meta" id="caseMeta"></ul>
+        <div id="caseSections"></div>
+        <ul class="metrics case-metrics" id="caseMetrics"></ul>
+        <a class="btn btn-light" id="caseCta" href="#contact">Start a conversation</a>
+      </div>
+    </div>
+  </dialog>
+
+<script>
+(() => {
+  "use strict";
+
+  /* Change this to the real email address */
+  const EMAIL = "thomas@avgsolution.com";
+
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const root = document.documentElement;
+
+  /* ---------- Theme toggle ---------- */
+  const themeBtn = $("#themeBtn");
+  try { const saved = localStorage.getItem("tlm-theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  themeBtn.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") ||
+      (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    const next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("tlm-theme", next); } catch (e) {}
+  });
+
+  /* ---------- Photos: hide the image if the file is missing so the silhouette shows ---------- */
+  $$(".ph img").forEach(img => {
+    const miss = () => img.classList.add("missing");
+    img.addEventListener("error", miss);
+    if (img.complete && img.naturalWidth === 0) miss();
+  });
+
+  /* ---------- Mobile menu ---------- */
+  const menuBtn = $("#menuBtn");
+  const pill = $("#pill");
+  const setMenu = open => {
+    pill.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+  menuBtn.addEventListener("click", () => setMenu(!pill.classList.contains("open")));
+  $$("a", pill).forEach(a => a.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+  /* ---------- Active nav link ---------- */
+  const links = $$('.pill a[href^="#"]');
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + entry.target.id));
+      }
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  $$("main section[id]").forEach(s => spy.observe(s));
+
+  /* ---------- Age from date of birth (9 Sept 1965) ---------- */
+  const now = new Date();
+  let age = now.getFullYear() - 1965;
+  if (now < new Date(now.getFullYear(), 8, 9)) age--;
+  const ageEl = $("#ageStat");
+  ageEl.dataset.count = age;
+  ageEl.textContent = age;
+
+  /* ---------- Reveal on scroll + count up ---------- */
+  $$(".grid-4, .grid-3, .projects").forEach(group => {
+    $$(".reveal", group).forEach((el, i) => el.style.setProperty("--d", (i % 4) * 0.08 + "s"));
+  });
+  const countUp = el => {
+    const target = +el.dataset.count;
+    const start = performance.now();
+    const tick = t => {
+      const p = Math.min((t - start) / 1200, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const reveal = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("in");
+      $$("[data-count]", entry.target).forEach(countUp);
+      obs.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+  $$(".reveal").forEach(el => reveal.observe(el));
+
+  /* ---------- Focus filter ---------- */
+  const chips = $$(".chip");
+  const cards = $$(".project");
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      chips.forEach(c => c.classList.toggle("active", c === chip));
+      const f = chip.dataset.filter;
+      cards.forEach(p => {
+        const show = f === "all" || p.dataset.cat.split(" ").includes(f);
+        p.classList.toggle("hide", !show);
+        if (show) p.classList.add("in");
+      });
+    });
+  });
+
+  /* ---------- Detail modal ---------- */
+  const CASES = {
+    policy: {
+      area: "Lobbying", domain: "Legislation and votes", out: "Policy positions",
+      aim: "To secure policies and votes that support my government's interests overseas.",
+      how: "I make the case directly to the people who decide, backed by clear arguments about why a policy serves both countries.",
+      result: "Decisions overseas that protect and advance my government's interests."
+    },
+    bilateral: {
+      area: "Lobbying", domain: "Government relations", out: "Lasting partnership",
+      aim: "To maintain a good relationship between both countries.",
+      how: "Steady, honest contact with officials and representatives, so trust is already in place when it matters.",
+      result: "A relationship that holds up under pressure and keeps channels open."
+    },
+    overseas: {
+      area: "Lobbying", domain: "Monitoring", out: "Early notice",
+      aim: "To see overseas proposals and decisions that could affect my government before they become law.",
+      how: "I follow developments abroad, judge who they affect, and decide when and how to respond.",
+      result: "Time to act, instead of reacting after the fact."
+    },
+    threat: {
+      area: "Security", domain: "Threat analysis", out: "Assessments",
+      aim: "To identify possible threats against my government from foreign and domestic sources.",
+      how: "I weigh intent, capability and opportunity, and separate what is known from what is assumed.",
+      result: "Clear judgements that decision makers can act on."
+    },
+    targets: {
+      area: "Security", domain: "Protection", out: "Priority targets",
+      aim: "To protect the country from terrorism by knowing what an attacker would want to hit.",
+      how: "I analyse high value targets, how exposed they are, and what would reduce the risk.",
+      result: "A ranked picture of what needs protecting first."
+    },
+    people: {
+      area: "Security", domain: "Counter-terrorism", out: "Leads and flags",
+      aim: "To identify people of interest who may be connected to an act of terrorism.",
+      how: "I assess individuals on evidence, link what is known about them, and flag concerns early.",
+      result: "Earlier warning, with judgements based on facts."
+    }
+  };
+  const modal = $("#caseModal");
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+  const openCase = btn => {
+    const d = CASES[btn.dataset.case];
+    const card = btn.closest(".project");
+    if (!d || !card) return;
+    $("#caseTitle").textContent = $("h3", card).textContent;
+    $("#caseTags").innerHTML = $(".tags", card).innerHTML;
+    $("#caseThumb").replaceChildren($(".thumb", card).cloneNode(true));
+    $("#caseMeta").innerHTML = `<li><b>Area:</b> ${esc(d.area)}</li><li><b>Domain:</b> ${esc(d.domain)}</li><li><b>Output:</b> ${esc(d.out)}</li>`;
+    $("#caseSections").innerHTML = [["The aim", d.aim], ["How it works", d.how], ["What it delivers", d.result]]
+      .map(([t, p]) => `<div class="case-sec"><h3>${t}</h3><p>${esc(p)}</p></div>`).join("");
+    $("#caseMetrics").innerHTML = $(".metrics", card).innerHTML;
+    if (typeof modal.showModal === "function") modal.showModal(); else modal.setAttribute("open", "");
+    root.classList.add("no-scroll");
+    $(".case-inner", modal).scrollTop = 0;
+  };
+  const closeCase = () => { if (modal.open) modal.close(); root.classList.remove("no-scroll"); };
+  $$(".link[data-case]").forEach(b => b.addEventListener("click", () => openCase(b)));
+  $("#caseClose").addEventListener("click", closeCase);
+  $("#caseCta").addEventListener("click", closeCase);
+  modal.addEventListener("click", e => { if (e.target === modal) closeCase(); });
+  modal.addEventListener("close", () => root.classList.remove("no-scroll"));
+
+  /* ---------- Contact form ---------- */
+  $("#emailLink").textContent = EMAIL;
+  $("#emailLink").setAttribute("href", "mailto:" + EMAIL);
+  const form = $("#contactForm");
+  const status = $("#formStatus");
+  const rules = {
+    name: v => v.trim().length >= 2 || "Please enter your name.",
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) || "Please enter a valid email.",
+    message: v => v.trim().length >= 10 || "Please write a little more (10+ characters)."
+  };
+  const validate = input => {
+    const result = rules[input.name](input.value);
+    const field = input.closest(".field");
+    const ok = result === true;
+    field.classList.toggle("invalid", !ok);
+    $(".err", field).textContent = ok ? "" : result;
+    return ok;
+  };
+  $$("input, textarea", form).forEach(i => {
+    i.addEventListener("blur", () => validate(i));
+    i.addEventListener("input", () => i.closest(".field").classList.contains("invalid") && validate(i));
+  });
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const allOk = $$("input, textarea", form).map(validate).every(Boolean);
+    status.classList.toggle("bad", !allOk);
+    if (!allOk) { status.textContent = "Please fix the highlighted fields."; return; }
+    const data = Object.fromEntries(new FormData(form));
+    const subject = encodeURIComponent(`Enquiry from ${data.name}`);
+    const body = encodeURIComponent(`${data.message}\n\n${data.name} (${data.email})`);
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+   status.textContent = "Thank you for reaching out! Your email app will open shortly so you can send your message.";
+    form.reset();
+  });
+
+  /* ---------- Footer year ---------- */
+  $("#year").textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>
